@@ -14,16 +14,16 @@ function Interviewer() {
   let { id } = useParams();
 
   useEffect(() => {
-    Axios.get(`http://localhost:3001/getInterviews/${id}`).then((res) => {
+    Axios.get(`http://localhost:3003/getInterviews/${id}`).then((res) => {
       setMyInterviews(res.data);
     });
-    Axios.get(`http://localhost:3001/getInterviews`).then((res) => {
+    Axios.get(`http://localhost:3003/getInterviews`).then((res) => {
       setInterviews(res.data);
     });
   }, [count, id]);
 
   const handleAccept = (i) => {
-    Axios.post("http://localhost:3001/acceptInterviewForEmp", {
+    Axios.post("http://localhost:3003/acceptInterviewForEmp", {
       interview_id: i,
       id: id,
     }).then(() => {
@@ -35,7 +35,7 @@ function Interviewer() {
   };
 
   const handleReject = (i) => {
-    Axios.post("http://localhost:3001/rejectInterviewForEmp", {
+    Axios.post("http://localhost:3003/rejectInterviewForEmp", {
       interview_id: i,
       id: id,
     }).then(() => {
@@ -85,8 +85,8 @@ function Interviewer() {
                       {id == i.employee1_id
                         ? i.employee1_decision
                         : id == i.employee2_id
-                        ? i.employee2_decision
-                        : i.employee3_decision}
+                          ? i.employee2_decision
+                          : i.employee3_decision}
                     </td>
                     <td>{i.status}</td>
                   </tr>

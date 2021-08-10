@@ -17,15 +17,15 @@ function ScheduleNew() {
   const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/getEmployees").then((res) => {
+    Axios.get("http://localhost:3003/getEmployees").then((res) => {
       setEmployees(res.data);
     });
-    Axios.get("http://localhost:3001/getCandidates").then((res) => {
+    Axios.get("http://localhost:3003/getCandidates").then((res) => {
       setCandidates(res.data);
     });
   }, [count]);
   const addInterview = () => {
-    Axios.post("http://localhost:3001/createSchedule", {
+    Axios.post("http://localhost:3003/createSchedule", {
       title: title,
       employee1: employee1,
       employee2: employee2,

@@ -18,46 +18,46 @@ function Home() {
   const [candidateName, setCandidateName] = useState("");
   const [candidateEmail, setCandidateEmail] = useState("");
   useEffect(() => {
-    Axios.get("http://localhost:3001/getEmployees").then((res) => {
+    Axios.get("http://localhost:3003/getEmployees").then((res) => {
       setEmployees(res.data);
     });
-    Axios.get("http://localhost:3001/getCandidates").then((res) => {
+    Axios.get("http://localhost:3003/getCandidates").then((res) => {
       setCandidates(res.data);
     });
-    Axios.get("http://localhost:3001/getInterviews").then((res) => {
+    Axios.get("http://localhost:3003/getInterviews").then((res) => {
       setInterviews(res.data);
     });
   }, [count]);
   const getInterviews = () => {
-    Axios.get("http://localhost:3001/getInterviews").then((res) => {
+    Axios.get("http://localhost:3003/getInterviews").then((res) => {
       setInterviews(res.data);
     });
     setCount((count) => count + 1);
   };
   const addCandidate = () => {
-    Axios.post("http://localhost:3001/addCandidate", {
+    Axios.post("http://localhost:3003/addCandidate", {
       name: candidateName,
       email: candidateEmail,
     });
   };
   const deleteCandidate = (name) => {
-    Axios.delete(`http://localhost:3001/deleteCandidate/${name}`);
+    Axios.delete(`http://localhost:3003/deleteCandidate/${name}`);
     setCount((count) => count + 1);
   };
   const deleteInterview = (id) => {
-    Axios.delete(`http://localhost:3001/deleteInterview/${id}`);
+    Axios.delete(`http://localhost:3003/deleteInterview/${id}`);
     setCount((count) => count + 1);
   };
   const deleteEmployee = (id) => {
-    Axios.delete(`http://localhost:3001/deleteEmployee/${id}`);
+    Axios.delete(`http://localhost:3003/deleteEmployee/${id}`);
     setCount((count) => count + 1);
   };
   const lockInterview = (id) => {
-    Axios.post(`http://localhost:3001/lockInterview/${id}`);
+    Axios.post(`http://localhost:3003/lockInterview/${id}`);
     setCount((count) => count + 1);
   };
   const pendingInterview = (id) => {
-    Axios.post(`http://localhost:3001/pendingInterview/${id}`);
+    Axios.post(`http://localhost:3003/pendingInterview/${id}`);
     setCount((count) => count + 1);
   };
 

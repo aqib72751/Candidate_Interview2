@@ -2,16 +2,44 @@ const express = require("express");
 const app = express();
 var mysql = require("mysql2");
 const cors = require("cors");
+const createTables = require("./createTables")
+//const insertData = require("./insertData")
+var con = require("./db")
 
+//insertData.employees()
 app.use(cors());
 app.use(express.json());
 
+//CREATE TABLES FIRST
+// createTables.candidates()
+// createTables.employees()
+// createTables.interviews()
+
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "candidate_interview_db",
+  host: 'mysql-42074-0.cloudclusters.net',
+  user: 'admin',
+  password: 'ZZi1I06m',
+  database: 'testDB',
+  port: "15470"
 });
+con.connect((error) => {
+  if (error) throw error;
+  console.log("database connected");
+})
+
+// con.query("drop table employees", (error, result) => {
+//   if (error) {
+//     console.log("error truncating  candidates", error);
+//   } else {
+//     console.log("candidates - truncated");
+//   }
+// })
+
+app.listen(3003, () => {
+  console.log("server listening on port 3001");
+});
+
+
 //Signup
 app.post("/create", (req, res) => {
   console.log(req.body);
@@ -243,6 +271,3 @@ app.post("/pendingInterview/:id", (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log("server listening on port 3001");
-});

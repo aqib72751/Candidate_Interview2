@@ -10,7 +10,7 @@ function AddEmployee() {
   const [role, setRole] = useState("");
 
   const addEmployee = () => {
-    Axios.post("http://localhost:3001/create", {
+    Axios.post("http://localhost:3003/create", {
       name: name,
       email: email,
       password: password,
